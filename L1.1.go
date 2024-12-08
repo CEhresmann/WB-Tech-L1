@@ -22,9 +22,14 @@ func (a *Human) Sayage() {
 	fmt.Println(a.Age)
 }
 
-func (a *Action) ActionSleep(d int) {
+func (a *Action) ActionSleep(d int) string {
 	a.sleepHours = time.Duration(d) * time.Hour
-	fmt.Println("suggested time to sleep is:", a.sleepHours.Hours(), "hours")
+	return fmt.Sprintf("suggested time to sleep is: %.0f hours", a.sleepHours.Hours())
+}
+
+func (a *Action) AgedSleep(d int) string {
+	a.sleepHours = time.Duration(d) * time.Hour
+	return fmt.Sprintf("suggested time to sleep is: %.0f hours for people %d years old", a.sleepHours.Hours(), a.Age)
 }
 
 func main() {
@@ -32,11 +37,12 @@ func main() {
 	man.Sayage()
 
 	var Gleb Action
-	Gleb.Sayage() //Встраивание метода от родительской структуры
+	Gleb.Sayage() //Использование метода от родительской структуры
 
 	Gleb.Age = 33
-	Gleb.ActionSleep(8)
+	fmt.Println(Gleb.ActionSleep(8))
 	Gleb.Sayage()
 	fmt.Println(Gleb.Age)
+	fmt.Println(Gleb.AgedSleep(6)) //Встраивание метода от родительской структуры
 
 }
