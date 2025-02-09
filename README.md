@@ -1,1 +1,1 @@
-WB Tech: level # 1 (Golang)
+# WB Tech: level # 1 (Golang)
